@@ -1,0 +1,6 @@
+/LoanAllocation/bin/*
+/LoanAllocation/obj/*
+/LoanSolver/obj/*
+/LoanSolver/bin/*
+
+/packages/*
