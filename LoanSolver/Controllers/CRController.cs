@@ -18,6 +18,7 @@ namespace LoanSolver.Controllers
             var input = JsonValue.Parse(value);
             var amount = input.ContainsKey("amount") ? (double)input["amount"] : 0;
             var fee = input.ContainsKey("feePct") ? (double)input["feePct"] : 0;
+            var feeAmt = input.ContainsKey("feeAmt") ? (double)input["feeAmt"] : 0;
             var serviceFee = input.ContainsKey("serviceFee") ? (double)input["serviceFee"] : 0;
             var indicativeRate = input.ContainsKey("rate") ? (double)input["rate"] : 0;
             var nPeriod = input.ContainsKey("nPeriod") ? (int) input["nPeriod"] : 60;
@@ -29,7 +30,7 @@ namespace LoanSolver.Controllers
             {
                 // Do work here
                 // Step 1: Calculate the mortgage repayment
-                var feeAmount = amount * fee + serviceFee * nPeriod * 1.0 / period;
+                var feeAmount = (feeAmt > 0 ? feeAmt : amount * fee) + serviceFee * nPeriod * 1.0 / period;
                 if (feeAmount < 150.0)
                     feeAmount = 150.0;
 
